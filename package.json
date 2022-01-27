@@ -1,5 +1,5 @@
 {
-  "name": "juejin-auto-checkin",
+  "name": "jj-qiandao",
   "version": "1.0.0",
   "description": "掘金每日自动签到，自动抽奖，自动粘喜气,自动获得游戏奖励",
   "main": "./src/index",

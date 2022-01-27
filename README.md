@@ -36,7 +36,7 @@
 
 ![image-20220112100911876](https://coderduan-image.oss-cn-hangzhou.aliyuncs.com/img/202201121009917.png)
 
-![image-20220112101035646](https://coderduan-image.oss-cn-hangzhou.aliyuncs.com/img/202201121010678.png)
+![userId](./statics/imgs/userId.png)
 
 ### 抽奖时间修改
 
