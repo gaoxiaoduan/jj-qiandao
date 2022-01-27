@@ -1,0 +1,27 @@
+{
+  "name": "juejin-auto-checkin",
+  "version": "1.0.0",
+  "description": "掘金每日自动签到，自动抽奖，自动粘喜气,自动获得游戏奖励",
+  "main": "./src/index",
+  "scripts": {
+    "start": "node ./src/index",
+    "test:bot": "node ./test/test-dingtalk-bot",
+    "test:api": "node ./test/test-api",
+    "test:game": "node ./src/lib/game/run.js"
+  },
+  "keywords": [
+    "掘金",
+    "签到",
+    "抽奖",
+    "粘喜气",
+    "自动"
+  ],
+  "author": "Orange",
+  "license": "ISC",
+  "dependencies": {
+    "axios": "^0.21.1",
+    "dayjs": "^1.10.6",
+    "got": "^11.8.2",
+    "jsonwebtoken": "^8.5.1"
+  }
+}
