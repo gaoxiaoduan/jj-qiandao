@@ -55,7 +55,7 @@ const getTarck = maps => {
 }
 
 let runNum = 0
-let errorCalled = false // 报错后，尝试再次执行
+// let errorCalled = false // 报错后，尝试再次执行
 const autoGame = async () => {
   try {
     runNum++
@@ -85,17 +85,19 @@ const autoGame = async () => {
           }, 10000) // 设置10s执行一次，防止接口调用太过频繁，服务器报500的错
         } else {
           console.log('今日奖励已达上限！')
+          // 若到达今日限制，脚本停止，若服务器500错误，则等待66s，再次执行脚本
+          return
         }
       })
     })
   } catch (e) {
     console.log('捕获到错误 => ', e)
-    if (errorCalled) return
-    console.log('20s后尝试再次执行🎮')
+    // if (errorCalled) return
+    console.log('66s后尝试再次执行🎮~')
     setTimeout(() => {
-      errorCalled = true
+      // errorCalled = true
       autoGame()
-    }, 20000)
+    }, 66000)
   }
 }
 
