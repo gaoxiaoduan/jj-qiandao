@@ -1,4 +1,4 @@
-const { COOKIE, ALL_IN, USERID } = require('./lib/config')
+const { COOKIE, ALL_IN, USERID, AUTO_CHECK_IN } = require('./lib/config')
 const message = require('./lib/message')
 
 if (!COOKIE) return message('获取不到cookie，请检查设置')
@@ -70,14 +70,20 @@ async function dipLucky() {
     return
   }
 
-  api.check_in().then(({ sum_point }) => {
-    message(`签到成功!当前积分: ${sum_point}`)
-    // 去抽奖
+  if (!AUTO_CHECK_IN) {
+    // 签到并抽奖
+    api.check_in().then(({ sum_point }) => {
+      message(`签到成功!当前积分: ${sum_point}`)
+      // 去抽奖
+      ALL_IN === 'true' ? draw_all() : draw()
+    })
+  } else {
+    // 仅抽奖
     ALL_IN === 'true' ? draw_all() : draw()
-  })
+  }
+
   const dipMsg = await dipLucky()
   message(dipMsg)
-
   if (!USERID) return message('获取不到uid，请检查设置')
   autoGame()
   message('游戏运行中...')
