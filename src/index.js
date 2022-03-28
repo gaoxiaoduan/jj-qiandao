@@ -70,7 +70,7 @@ async function dipLucky() {
     return
   }
 
-  if (!AUTO_CHECK_IN) {
+  if (AUTO_CHECK_IN) {
     // 签到并抽奖
     api.check_in().then(({ sum_point }) => {
       message(`签到成功!当前积分: ${sum_point}`)
