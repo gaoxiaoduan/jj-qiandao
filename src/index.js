@@ -1,4 +1,11 @@
-const { COOKIE, ALL_IN, USERID, AUTO_CHECK_IN } = require('./lib/config')
+const {
+  COOKIE,
+  ALL_IN,
+  USERID,
+  AUTO_CHECK_IN,
+  AID,
+  UUID
+} = require('./lib/config')
 const message = require('./lib/message')
 
 if (!COOKIE) return message('获取不到cookie，请检查设置')
@@ -53,6 +60,29 @@ async function dipLucky() {
   if (dip_action === 1) return `沾喜气成功! ${BeamingValue}`
 }
 
+// 收集bug
+async function collectBug() {
+  try {
+    let count = 0 // 成功收集bug数
+    let day = new Date().getDate()
+    const todayArray = [10, 9, 8, 7].map(item => api.collect_bugs(item, day))
+    const yesterdayArray = [10, 9, 8, 7].map(item =>
+      api.collect_bugs(item, day - 1)
+    )
+    const filterSuccessResult = resArray => {
+      resArray.filter(item => item.status === 'fulfilled').forEach(_ => count++)
+    }
+    const todayResArray = await Promise.allSettled(todayArray)
+    const yesterdayResArray = await Promise.allSettled(yesterdayArray)
+    todayResArray && filterSuccessResult(todayResArray)
+    yesterdayResArray && filterSuccessResult(yesterdayResArray)
+  } catch (error) {
+    // console.log(error)
+  } finally {
+    return count
+  }
+}
+
 ;(async () => {
   // 查询今日是否已经签到
   const today_status = await api.get_today_status()
@@ -82,8 +112,14 @@ async function dipLucky() {
     ALL_IN === 'true' ? draw_all() : draw()
   }
 
-  const dipMsg = await dipLucky()
+  const dipMsg = await dipLucky() // 粘喜气
   message(dipMsg)
+
+  if (!AID) return message('获取不到AID，请检查设置')
+  if (!UUID) return message('获取不到UUID，请检查设置')
+  const bugCount = await collectBug() // 收集bug
+  bugCount && message('bug收集成功')
+
   if (!USERID) return message('获取不到uid，请检查设置')
   autoGame()
   message('游戏运行中...')

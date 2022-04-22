@@ -1,4 +1,5 @@
 const request = require('./request')
+const { AID, UUID } = require('./config')
 
 module.exports = function (cookie) {
   return {
@@ -100,6 +101,30 @@ module.exports = function (cookie) {
           cookie
         },
         data: { lottery_history_id: id }
+      })
+    },
+
+    /**
+     * 收集bug
+     * @param {*} bug_type 目前知道的类型
+     * 10,9(表示当天定时生成的bug)
+     * 7(表示昨天定时生成的bug)
+     * @returns Promise<any>
+     */
+    collect_bugs: function (bug_type, day) {
+      let date = new Date()
+      let year = date.getFullYear()
+      let month = date.getMonth()
+      return request({
+        method: 'POST',
+        url: `https://api.juejin.cn/user_api/v1/bugfix/collect?aid=${AID}&uuid=${UUID}`,
+        headers: {
+          cookie
+        },
+        data: {
+          bug_time: parseInt(new Date(year, month, day).getTime() / 1000),
+          bug_type: bug_type
+        }
       })
     }
   }

@@ -2,6 +2,8 @@ module.exports = {
   COOKIE: process.env.COOKIE || '',
   // 自动玩游戏需要此参数，在掘金首页打开控制台输入这行代码`window.__NUXT__.state.auth.user.id`就可以得到
   USERID: process.env.USERID || '',
+  AID: process.env.AID || '',
+  UUID: process.env.UUID || '',
   AUTO_CHECK_IN: process.env.AUTO_CHECK_IN || true, // 是否开启自动签到，默认开启
   DINGTALK_WEBHOOK: process.env.DINGTALK_WEBHOOK || '',
   DINGTALK_SECRET: process.env.DINGTALK_SECRET || '',

@@ -17,24 +17,24 @@ const defaultOptions = {
     'sec-fetch-mode': 'cors',
     'sec-fetch-site': 'same-site',
     'User-Agent':
-      'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/92.0.4515.131 Safari/537.36',
-  },
+      'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/92.0.4515.131 Safari/537.36'
+  }
 }
 
 module.exports = function request(options) {
   return new Promise((resolve, reject) => {
     axios(assignOption(defaultOptions, options))
-      .then((res) => {
+      .then(res => {
         let data = res.data || {}
         if (data.err_no === 0) {
           resolve(data.data)
         } else {
           message(data.err_msg)
-          reject(data)
+          // reject(data)
         }
       })
-      .catch((err) => {
-        message(err.message)
+      .catch(err => {
+        // message(err.message)
         reject(err)
       })
   })
