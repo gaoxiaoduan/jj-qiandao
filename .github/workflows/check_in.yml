@@ -3,6 +3,8 @@ on:
   schedule:
     # `分 时 天 月 周` 时按照标准时间 北京时间=标准时间+8 2表示北京时间早上6点
     - cron: '0 22 * * *'
+  workflow_dispatch:
+  
 jobs:
   check_in:
     runs-on: ubuntu-latest
@@ -10,11 +12,6 @@ jobs:
       # 切换分支
       - name: Checkout
         uses: actions/checkout@master
-
-      # 下载 git submodule
-      - uses: srt32/git-actions@v0.0.3
-        with:
-          args: git submodule update --init --recursive
 
       # 使用 node:14
       - name: 使用 Node.js 14
