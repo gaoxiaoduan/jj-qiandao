@@ -4,7 +4,7 @@ on:
     # `分 时 天 月 周` 时按照标准时间 北京时间=标准时间+8 2表示北京时间早上6点
     - cron: '0 22 * * *'
   workflow_dispatch:
-  
+
 jobs:
   check_in:
     runs-on: ubuntu-latest
@@ -29,6 +29,6 @@ jobs:
       # 运行脚本
       - name: 运行脚本
         run: |
-          COOKIE='${{ secrets.COOKIE }}' USERID='${{ secrets.USERID }}' DINGTALK_WEBHOOK='${{ secrets.DINGTALK_WEBHOOK }}' DINGTALK_SECRET='${{ secrets.DINGTALK_SECRET }}' ALL_IN='${{ secrets.ALL_IN }}' WX_COMPANY_ID='${{ secrets.WX_COMPANY_ID }}' WX_APP_ID='${{ secrets.WX_APP_ID }}' WX_APP_SECRET='${{ secrets.WX_APP_SECRET }}' FEISHU_WEBHOOK='${{ secrets.FEISHU_WEBHOOK }}' FEISHU_SECRET='${{ secrets.FEISHU_SECRET }}' npm start
+          COOKIE='${{ secrets.COOKIE }}' USERID='${{ secrets.USERID }}' AID='${{ secrets.AID }}' UUID='${{ secrets.UUID }}' DINGTALK_WEBHOOK='${{ secrets.DINGTALK_WEBHOOK }}' DINGTALK_SECRET='${{ secrets.DINGTALK_SECRET }}' ALL_IN='${{ secrets.ALL_IN }}' WX_COMPANY_ID='${{ secrets.WX_COMPANY_ID }}' WX_APP_ID='${{ secrets.WX_APP_ID }}' WX_APP_SECRET='${{ secrets.WX_APP_SECRET }}' FEISHU_WEBHOOK='${{ secrets.FEISHU_WEBHOOK }}' FEISHU_SECRET='${{ secrets.FEISHU_SECRET }}' npm start
         env:
           CI: true
