@@ -125,6 +125,8 @@ module.exports = function (cookie) {
           bug_time: parseInt(new Date(year, month, day).getTime() / 1000),
           bug_type: bug_type
         }
+      }).catch(err => {
+        // console.log('err:', err)
       })
     }
   }

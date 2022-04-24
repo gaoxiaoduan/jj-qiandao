@@ -62,22 +62,27 @@ async function dipLucky() {
 
 // 收集bug
 async function collectBug() {
+  let count = 0 // 成功收集bug数
   try {
-    let count = 0 // 成功收集bug数
     let day = new Date().getDate()
-    const todayArray = [10, 9, 8, 7].map(item => api.collect_bugs(item, day))
-    const yesterdayArray = [10, 9, 8, 7].map(item =>
+    let typeArray = [14, 13, 12, 11, 10, 9, 8, 7]
+    const todayArray = typeArray.map(item => api.collect_bugs(item, day))
+    const yesterdayArray = typeArray.map(item =>
       api.collect_bugs(item, day - 1)
     )
-    const filterSuccessResult = resArray => {
-      resArray.filter(item => item.status === 'fulfilled').forEach(_ => count++)
-    }
     const todayResArray = await Promise.allSettled(todayArray)
     const yesterdayResArray = await Promise.allSettled(yesterdayArray)
+    // console.log('[ todayResArray ] >', todayResArray)
+    // console.log('[ yesterdayResArray ] >', yesterdayResArray)
+    const filterSuccessResult = resArray => {
+      resArray
+        .filter(item => item.status === 'fulfilled' && Boolean(item.value))
+        .forEach(_ => count++)
+    }
     todayResArray && filterSuccessResult(todayResArray)
     yesterdayResArray && filterSuccessResult(yesterdayResArray)
   } catch (error) {
-    // console.log(error)
+    // console.log('error::', error)
   } finally {
     return count
   }
@@ -88,18 +93,13 @@ async function collectBug() {
   const today_status = await api.get_today_status()
   if (today_status) {
     message('今日已经签到!')
-
     // 查询今日是否有免费抽奖机会
     const { free_count } = await api.lottery_config()
-
     if (free_count === 0) return message('今日已经免费抽奖!')
-
     // 去抽奖
     ALL_IN === 'true' ? await draw_all() : await draw()
-
     return
   }
-
   if (AUTO_CHECK_IN) {
     // 签到并抽奖
     api.check_in().then(({ sum_point }) => {
@@ -115,12 +115,14 @@ async function collectBug() {
   const dipMsg = await dipLucky() // 粘喜气
   message(dipMsg)
 
-  if (!AID) return message('获取不到AID，请检查设置')
-  if (!UUID) return message('获取不到UUID，请检查设置')
-  const bugCount = await collectBug() // 收集bug
-  bugCount && message('bug收集成功')
-
   if (!USERID) return message('获取不到uid，请检查设置')
   autoGame()
   message('游戏运行中...')
+
+  if (!AID) return message('获取不到AID，请检查设置')
+  if (!UUID) return message('获取不到UUID，请检查设置')
+  const bugCount = await collectBug() // 收集bug
+  bugCount === 0
+    ? message('今日没有收集到bug')
+    : message(`成功,收集到${bugCount}个bug`)
 })()

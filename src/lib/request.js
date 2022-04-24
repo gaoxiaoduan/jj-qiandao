@@ -30,11 +30,11 @@ module.exports = function request(options) {
           resolve(data.data)
         } else {
           message(data.err_msg)
-          // reject(data)
+          reject(data)
         }
       })
       .catch(err => {
-        // message(err.message)
+        message(err.message)
         reject(err)
       })
   })
