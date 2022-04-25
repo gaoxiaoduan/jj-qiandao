@@ -70,17 +70,15 @@ async function collectBug() {
     const yesterdayArray = typeArray.map(item =>
       api.collect_bugs(item, day - 1)
     )
-    const todayResArray = await Promise.allSettled(todayArray)
-    const yesterdayResArray = await Promise.allSettled(yesterdayArray)
-    // console.log('[ todayResArray ] >', todayResArray)
-    // console.log('[ yesterdayResArray ] >', yesterdayResArray)
-    const filterSuccessResult = resArray => {
-      resArray
-        .filter(item => item.status === 'fulfilled' && Boolean(item.value))
+    const collectResArray = await Promise.allSettled(
+      todayArray.concat(yesterdayArray)
+    )
+    const countSuccessResult = resArray => {
+      return resArray
+        .filter(item => item.status === 'fulfilled' && item.value !== undefined)
         .forEach(_ => count++)
     }
-    todayResArray && filterSuccessResult(todayResArray)
-    yesterdayResArray && filterSuccessResult(yesterdayResArray)
+    collectResArray && countSuccessResult(collectResArray)
   } catch (error) {
     // console.log('error::', error)
   } finally {
