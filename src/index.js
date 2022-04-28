@@ -93,10 +93,9 @@ async function collectBug() {
     message('今日已经签到!')
     // 查询今日是否有免费抽奖机会
     const { free_count } = await api.lottery_config()
-    if (free_count === 0) return message('今日已经免费抽奖!')
+    if (free_count === 0) message('今日已经免费抽奖!')
     // 去抽奖
     ALL_IN === 'true' ? await draw_all() : await draw()
-    return
   }
   if (AUTO_CHECK_IN) {
     // 签到并抽奖
