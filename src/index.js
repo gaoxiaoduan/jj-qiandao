@@ -89,21 +89,27 @@ async function collectBug() {
 ;(async () => {
   // 查询今日是否已经签到
   const today_status = await api.get_today_status()
+  let freeCount = 0 // 免费签到次数
   if (today_status) {
     message('今日已经签到!')
     // 查询今日是否有免费抽奖机会
     const { free_count } = await api.lottery_config()
+    freeCount = free_count
     if (free_count === 0) message('今日已经免费抽奖!')
     // 去抽奖
-    ALL_IN === 'true' ? await draw_all() : await draw()
+    if (ALL_IN === 'true' || freeCount !== 0) {
+      ALL_IN === 'true' ? await draw_all() : await draw()
+    }
   }
   if (AUTO_CHECK_IN) {
     // 签到并抽奖
-    api.check_in().then(({ sum_point }) => {
-      message(`签到成功!当前积分: ${sum_point}`)
-      // 去抽奖
-      ALL_IN === 'true' ? draw_all() : draw()
-    })
+    if (freeCount !== 0) {
+      api.check_in().then(({ sum_point }) => {
+        message(`签到成功!当前积分: ${sum_point}`)
+        // 去抽奖
+        ALL_IN === 'true' ? draw_all() : draw()
+      })
+    }
   } else {
     // 仅抽奖
     ALL_IN === 'true' ? draw_all() : draw()
