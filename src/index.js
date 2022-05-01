@@ -89,7 +89,7 @@ async function collectBug() {
 ;(async () => {
   // 查询今日是否已经签到
   const today_status = await api.get_today_status()
-  let freeCount = 0 // 免费签到次数
+  let freeCount = 3 // 免费签到次数
   if (today_status) {
     message('今日已经签到!')
     // 查询今日是否有免费抽奖机会
@@ -101,6 +101,7 @@ async function collectBug() {
       ALL_IN === 'true' ? await draw_all() : await draw()
     }
   }
+  await null // 将下面的任务放到下一个循环中执行
   if (AUTO_CHECK_IN) {
     // 签到并抽奖
     if (freeCount !== 0) {
