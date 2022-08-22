@@ -16,8 +16,8 @@
     "粘喜气",
     "自动"
   ],
-  "author": "Orange",
-  "license": "ISC",
+  "author": "gaoxiaoduan",
+  "license": "MIT",
   "dependencies": {
     "axios": "^0.21.1",
     "dayjs": "^1.10.6",
