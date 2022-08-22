@@ -5,6 +5,7 @@ module.exports = {
   AID: process.env.AID || '',
   UUID: process.env.UUID || '',
   AUTO_CHECK_IN: process.env.AUTO_CHECK_IN || true, // 是否开启自动签到，默认开启
+  SKIP_DRAW: process.env.SKIP_DRAW || false, // 是否跳过抽奖
   DINGTALK_WEBHOOK: process.env.DINGTALK_WEBHOOK || '',
   DINGTALK_SECRET: process.env.DINGTALK_SECRET || '',
   ALL_IN: process.env.ALL_IN || '',

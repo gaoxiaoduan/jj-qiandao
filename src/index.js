@@ -4,7 +4,8 @@ const {
   USERID,
   AUTO_CHECK_IN,
   AID,
-  UUID
+  UUID,
+  SKIP_DRAW
 } = require('./lib/config')
 const message = require('./lib/message')
 
@@ -22,10 +23,15 @@ async function get_raw_time() {
 
 // 抽奖一次
 async function draw() {
-  const res = await api.draw()
-  const { lottery_name } = res
-  message(`抽奖成功，获得: ${lottery_name}`)
-  return res
+  try {
+    if (SKIP_DRAW) return null // 跳过抽奖
+    const res = await api.draw()
+    const { lottery_name } = res
+    message(`抽奖成功，获得: ${lottery_name}`)
+    return res
+  } catch (error) {
+    console.log(error)
+  }
 }
 
 // 抽所有
@@ -104,7 +110,7 @@ async function collectBug() {
   await null // 将下面的任务放到下一个循环中执行
   if (AUTO_CHECK_IN) {
     // 签到并抽奖
-    if (freeCount !== 0) {
+    if (!SKIP_DRAW && freeCount !== 0) {
       api.check_in().then(({ sum_point }) => {
         message(`签到成功!当前积分: ${sum_point}`)
         // 去抽奖
