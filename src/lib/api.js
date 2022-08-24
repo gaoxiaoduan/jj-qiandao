@@ -117,7 +117,7 @@ module.exports = function (cookie) {
       let month = date.getMonth()
       return request({
         method: 'POST',
-        url: `https://api.juejin.cn/user_api/v1/bugfix/collect?aid=${AID}&uuid=${UUID}`,
+        url: `https://api.juejin.cn/user_api/v1/bugfix/collect?aid=${AID}&uuid=${UUID}&spider=0`,
         headers: {
           cookie
         },
