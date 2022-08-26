@@ -106,27 +106,38 @@ module.exports = function (cookie) {
 
     /**
      * 收集bug
-     * @param {*} bug_type 目前知道的类型
-     * 10,9(表示当天定时生成的bug)
-     * 7(表示昨天定时生成的bug)
+     * @param {*} data
+     *  data: {
+     *  bug_time: 1661443200, (当天的时间 e:2020-01-01)
+     *  bug_type: 10, 目前知道的类型 10,9,8(表示当天定时生成的bug) 7(表示昨天定时生成的bug)】
+     *  }
      * @returns Promise<any>
      */
-    collect_bugs: function (bug_type, day) {
-      let date = new Date()
-      let year = date.getFullYear()
-      let month = date.getMonth()
+    collect_bugs: function (data) {
       return request({
         method: 'POST',
         url: `https://api.juejin.cn/user_api/v1/bugfix/collect?aid=${AID}&uuid=${UUID}&spider=0`,
         headers: {
           cookie
         },
-        data: {
-          bug_time: parseInt(new Date(year, month, day).getTime() / 1000),
-          bug_type: bug_type
-        }
+        data
       }).catch(err => {
         // console.log('err:', err)
+      })
+    },
+
+    /**
+     * 未收集bug （生成bug）
+     * @return [{ bug_type: 8,bug_time: 1661443200,bug_show_type: 1,is_first: true}]
+     */
+    not_collect: function () {
+      return request({
+        method: 'POST',
+        url: `https://api.juejin.cn/user_api/v1/bugfix/not_collect?aid=${AID}&uuid=${UUID}&spider=0`,
+        headers: {
+          cookie
+        },
+        data: {}
       })
     }
   }

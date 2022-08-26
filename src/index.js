@@ -70,15 +70,14 @@ async function dipLucky() {
 async function collectBug() {
   let count = 0 // 成功收集bug数
   try {
-    let day = new Date().getDate()
-    let typeArray = [14, 13, 12, 11, 10, 9, 8, 7]
-    const todayArray = typeArray.map(item => api.collect_bugs(item, day))
-    const yesterdayArray = typeArray.map(item =>
-      api.collect_bugs(item, day - 1)
+    const res = await api.not_collect()
+    const notCollectResult = res || [] // 未收集的bug
+    if (notCollectResult?.length === 0) return count
+
+    const notCollectResultArrayApi = notCollectResult.map(item =>
+      api.collect_bugs(item)
     )
-    const collectResArray = await Promise.allSettled(
-      todayArray.concat(yesterdayArray)
-    )
+    const collectResArray = await Promise.allSettled(notCollectResultArrayApi)
     const countSuccessResult = resArray => {
       return resArray
         .filter(item => item.status === 'fulfilled' && item.value !== undefined)
@@ -110,7 +109,7 @@ async function collectBug() {
   await null // 将下面的任务放到下一个循环中执行
   if (AUTO_CHECK_IN) {
     // 签到并抽奖
-    if (!SKIP_DRAW && freeCount !== 0) {
+    if (freeCount !== 0) {
       api.check_in().then(({ sum_point }) => {
         message(`签到成功!当前积分: ${sum_point}`)
         // 去抽奖
