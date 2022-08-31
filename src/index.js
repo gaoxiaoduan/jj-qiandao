@@ -124,9 +124,9 @@ async function collectBug() {
   const dipMsg = await dipLucky() // 粘喜气
   message(dipMsg)
 
-  if (!USERID) return message('获取不到uid，请检查设置')
-  autoGame()
-  message('游戏运行中...')
+//   if (!USERID) return message('获取不到uid，请检查设置')
+//   autoGame()
+//   message('游戏运行中...')
 
   if (!AID) return message('获取不到AID，请检查设置')
   if (!UUID) return message('获取不到UUID，请检查设置')
