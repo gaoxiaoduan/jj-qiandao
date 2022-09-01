@@ -10,7 +10,7 @@ module.exports = function (cookie) {
     lottery_config: function () {
       return request({
         method: 'GET',
-        url: 'https://api.juejin.cn/growth_api/v1/lottery_config/get',
+        url: 'https://api.juejin.cn/growth_api/v1/lottery_config/get?spider=0',
         headers: {
           cookie
         }
@@ -24,7 +24,7 @@ module.exports = function (cookie) {
     get_today_status: function () {
       return request({
         method: 'GET',
-        url: 'https://api.juejin.cn/growth_api/v1/get_today_status',
+        url: 'https://api.juejin.cn/growth_api/v1/get_today_status?spider=0',
         headers: {
           cookie
         }
@@ -38,7 +38,7 @@ module.exports = function (cookie) {
     check_in: function () {
       return request({
         method: 'POST',
-        url: 'https://api.juejin.cn/growth_api/v1/check_in',
+        url: 'https://api.juejin.cn/growth_api/v1/check_in?spider=0',
         headers: {
           cookie
         }
@@ -52,7 +52,7 @@ module.exports = function (cookie) {
     draw: function () {
       return request({
         method: 'POST',
-        url: 'https://api.juejin.cn/growth_api/v1/lottery/draw',
+        url: 'https://api.juejin.cn/growth_api/v1/lottery/draw?spider=0',
         headers: {
           cookie
         }
@@ -66,7 +66,7 @@ module.exports = function (cookie) {
     get_cur_point: function () {
       return request({
         method: 'GET',
-        url: 'https://api.juejin.cn/growth_api/v1/get_cur_point',
+        url: 'https://api.juejin.cn/growth_api/v1/get_cur_point?spider=0',
         headers: {
           cookie
         }
@@ -80,7 +80,7 @@ module.exports = function (cookie) {
     get_dip_lucky_list: function () {
       return request({
         method: 'POST',
-        url: 'https://api.juejin.cn/growth_api/v1/lottery_history/global_big',
+        url: 'https://api.juejin.cn/growth_api/v1/lottery_history/global_big?spider=0',
         headers: {
           cookie
         },
@@ -96,7 +96,7 @@ module.exports = function (cookie) {
     dip_lucky: function (id) {
       return request({
         method: 'POST',
-        url: 'https://api.juejin.cn/growth_api/v1/lottery_lucky/dip_lucky',
+        url: 'https://api.juejin.cn/growth_api/v1/lottery_lucky/dip_lucky?spider=0',
         headers: {
           cookie
         },
