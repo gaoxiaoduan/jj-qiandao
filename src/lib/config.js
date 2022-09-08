@@ -3,7 +3,7 @@ module.exports = {
   // 自动玩游戏需要此参数，在掘金首页打开控制台输入这行代码`window.__NUXT__.state.auth.user.id`就可以得到
   USERID: process.env.USERID || '',
   UUID: process.env.UUID || '',
-  COMMITID: process.env.COMMITID || '7130917413700239374', // 评论id
+  COMMITID: process.env.COMMITID || '', // 评论id
   COMMITTYPE: process.env.COMMITTYPE || true, // 评论类型（true:沸点 false:文章）
   AUTO_CHECK_IN: process.env.AUTO_CHECK_IN || true, // 是否开启自动签到，默认开启
   SKIP_DRAW: process.env.SKIP_DRAW || false, // 是否跳过抽奖
