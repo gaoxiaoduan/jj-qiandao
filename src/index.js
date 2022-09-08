@@ -4,15 +4,18 @@ const {
   USERID,
   AUTO_CHECK_IN,
   UUID,
-  SKIP_DRAW
+  SKIP_DRAW,
+  COMMITID,
+  COMMITTYPE
 } = require('./lib/config')
 const message = require('./lib/message')
 
-if (!COOKIE) return message('获取不到cookie，请检查设置')
+if (!COOKIE) return message('获取不到cookie,请检查设置')
 
 const { autoGame } = require('./lib/game/autoGame')
 
 const api = require('./lib/api')(COOKIE)
+const { randomEmoji } = require('./lib/utils')
 
 // 获取可抽奖次数
 async function get_raw_time() {
@@ -90,6 +93,28 @@ async function collectBug() {
   }
 }
 
+// 评论
+async function commit() {
+  try {
+    if (!COMMITID) return message('获取不到commitID,请检查设置')
+    let comment_content = ''
+    for (let i = 0; i < 3; i++) {
+      comment_content += randomEmoji()
+    }
+    const params = {
+      item_id: COMMITID, // 沸点id
+      item_type: COMMITTYPE ? 4 : 2, // 评论类型 2为文章 4为沸点(默认)
+      comment_content,
+      comment_pics: [],
+      client_type: 2608 // 2608是浏览器
+    }
+    const res = await api.comment(params)
+    message(`评论成功📢📢📢`)
+  } catch (error) {
+    console.log('commit error::', error)
+  }
+}
+
 ;(async () => {
   // 查询今日是否已经签到
   const today_status = await api.get_today_status()
@@ -123,11 +148,13 @@ async function collectBug() {
   const dipMsg = await dipLucky() // 粘喜气
   message(dipMsg)
 
-  if (!USERID) return message('获取不到uid，请检查设置')
+  commit() // 评论沸点
+
+  if (!USERID) return message('获取不到uid,请检查设置')
   autoGame()
   message('游戏运行中...')
 
-  if (!UUID) return message('获取不到UUID，请检查设置')
+  if (!UUID) return message('获取不到UUID,请检查设置')
   const bugCount = await collectBug() // 收集bug
   bugCount === 0
     ? message('今日没有收集到bug')

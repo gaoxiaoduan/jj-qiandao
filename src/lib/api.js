@@ -139,6 +139,24 @@ module.exports = function (cookie) {
         },
         data: {}
       })
+    },
+
+    /**
+     * 评论接口
+     * @param {*} data
+     * @returns
+     */
+    comment: function (data) {
+      return request({
+        method: 'POST',
+        url: `https://api.juejin.cn/interact_api/v1/comment/publish?aid=2608&uuid=${UUID}&spider=0`,
+        headers: {
+          cookie
+        },
+        data
+      }).catch(err => {
+        // console.log('err:', err)
+      })
     }
   }
 }
