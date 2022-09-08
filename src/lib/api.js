@@ -1,5 +1,5 @@
 const request = require('./request')
-const { AID, UUID } = require('./config')
+const { UUID } = require('./config')
 
 module.exports = function (cookie) {
   return {
@@ -116,7 +116,7 @@ module.exports = function (cookie) {
     collect_bugs: function (data) {
       return request({
         method: 'POST',
-        url: `https://api.juejin.cn/user_api/v1/bugfix/collect?aid=${AID}&uuid=${UUID}&spider=0`,
+        url: `https://api.juejin.cn/user_api/v1/bugfix/collect?aid=2608&uuid=${UUID}&spider=0`,
         headers: {
           cookie
         },
@@ -133,7 +133,7 @@ module.exports = function (cookie) {
     not_collect: function () {
       return request({
         method: 'POST',
-        url: `https://api.juejin.cn/user_api/v1/bugfix/not_collect?aid=${AID}&uuid=${UUID}&spider=0`,
+        url: `https://api.juejin.cn/user_api/v1/bugfix/not_collect?aid=2608&uuid=${UUID}&spider=0`,
         headers: {
           cookie
         },

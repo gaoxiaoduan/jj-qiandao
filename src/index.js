@@ -3,7 +3,6 @@ const {
   ALL_IN,
   USERID,
   AUTO_CHECK_IN,
-  AID,
   UUID,
   SKIP_DRAW
 } = require('./lib/config')
@@ -128,7 +127,6 @@ async function collectBug() {
   autoGame()
   message('游戏运行中...')
 
-  if (!AID) return message('获取不到AID，请检查设置')
   if (!UUID) return message('获取不到UUID，请检查设置')
   const bugCount = await collectBug() // 收集bug
   bugCount === 0

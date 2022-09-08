@@ -46,11 +46,11 @@
 
 ## 三、自动收集 bug
 
-为`Actions secrets`设置`AID`和`UUID`,即可自动收集每日 bug
+为`Actions secrets`设置`UUID`,即可自动收集每日 bug
 
 ![image-20220424134732535](https://coderduan-image.oss-cn-hangzhou.aliyuncs.com/img/202204241347654.png)
 
-### AID & UUID 获取方式
+### UUID 获取方式
 
 ![image-20220424135406092](https://coderduan-image.oss-cn-hangzhou.aliyuncs.com/img/202204241354125.png)
 
