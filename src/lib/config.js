@@ -6,7 +6,7 @@ module.exports = {
   COMMITID: process.env.COMMITID || '', // 评论id
   COMMITTYPE: process.env.COMMITTYPE || true, // 评论类型（true:沸点 false:文章）
   ASSIST_USER_ID: process.env.ASSIST_USER_ID || '', // 助力目标id (目标USERID)
-  ASSIST_DAY: process.env.ASSIST_DAY || 6, // 助力时间(默认为周六)
+  ASSIST_DAY: process.env.ASSIST_DAY || '6', // 助力时间(默认为周六)
   AUTO_CHECK_IN: process.env.AUTO_CHECK_IN || true, // 是否开启自动签到，默认开启
   SKIP_DRAW: process.env.SKIP_DRAW || false, // 是否跳过抽奖
   DINGTALK_WEBHOOK: process.env.DINGTALK_WEBHOOK || '',
