@@ -105,6 +105,21 @@ module.exports = function (cookie) {
     },
 
     /**
+     * 未收集bug （生成bug）
+     * @return [{ bug_type: 8,bug_time: 1661443200,bug_show_type: 1,is_first: true}]
+     */
+    not_collect: function () {
+      return request({
+        method: 'POST',
+        url: `https://api.juejin.cn/user_api/v1/bugfix/not_collect?aid=2608&uuid=${UUID}&spider=0`,
+        headers: {
+          cookie
+        },
+        data: {}
+      })
+    },
+
+    /**
      * 收集bug
      * @param {*} data
      *  data: {
@@ -122,22 +137,60 @@ module.exports = function (cookie) {
         },
         data
       }).catch(err => {
-        // console.log('err:', err)
+        // console.log('collect_bugs API err:', err)
       })
     },
 
     /**
-     * 未收集bug （生成bug）
-     * @return [{ bug_type: 8,bug_time: 1661443200,bug_show_type: 1,is_first: true}]
+     * 获取比赛id
+     * @returns Promise<any>
      */
-    not_collect: function () {
+    getCompetition: function () {
       return request({
         method: 'POST',
-        url: `https://api.juejin.cn/user_api/v1/bugfix/not_collect?aid=2608&uuid=${UUID}&spider=0`,
+        url: `https://api.juejin.cn/user_api/v1/bugfix/competition?aid=2608&uuid=${UUID}&spider=0`,
         headers: {
           cookie
         },
-        data: {}
+        data: {
+          competition_id: ''
+        }
+      }).catch(err => {
+        // console.log('getCompetition API err:', err)
+      })
+    },
+
+    /**
+     * bugfix用户信息
+     * @returns Promise<any>
+     */
+    bugfix_user: function (data) {
+      return request({
+        method: 'POST',
+        url: `https://api.juejin.cn/user_api/v1/bugfix/user?aid=2608&uuid=${UUID}&spider=0`,
+        headers: {
+          cookie
+        },
+        data
+      }).catch(err => {
+        // console.log('bugfix_user API err:', err)
+      })
+    },
+
+    /**
+     * fix bug接口
+     * @returns Promise<any>
+     */
+    bugfix_fix: function (data) {
+      return request({
+        method: 'POST',
+        url: `https://api.juejin.cn/user_api/v1/bugfix/fix?aid=2608&uuid=${UUID}&spider=0`,
+        headers: {
+          cookie
+        },
+        data
+      }).catch(err => {
+        // console.log('bugfix_fix API err:', err)
       })
     },
 
@@ -155,7 +208,7 @@ module.exports = function (cookie) {
         },
         data
       }).catch(err => {
-        // console.log('err:', err)
+        // console.log('comment API err:', err)
       })
     }
   }
