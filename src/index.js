@@ -188,7 +188,7 @@ async function autoHelp(competition_id, bug_fix_num = 1) {
   const { competition_id } = await api.getCompetition()
   const { user_own_bug } = await api.bugfix_user({ competition_id })
   bugCount === 0
-    ? message('没有收集到bug~')
+    ? message(`💬 没有收集到bug~,目前bug数量:${user_own_bug || -1}`)
     : message(`🎉 收集到${bugCount}个bug,目前bug数量:${user_own_bug || -1}`)
 
   // -------------------自动助力-------------------
