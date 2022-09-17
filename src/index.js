@@ -192,7 +192,10 @@ async function autoHelp(competition_id, bug_fix_num = 1) {
     : message(`🎉 收集到${bugCount}个bug,目前bug数量:${user_own_bug || -1}`)
 
   // -------------------自动助力-------------------
-  if (new Date().getDay().toString() === ASSIST_DAY) {
+  const nowDate = new Date()
+  if (nowDate.getDay().toString() === ASSIST_DAY) {
+    const nowHours = nowDate.getHours()
+    if (nowHours !== 10) return message(`助力尚未开始:当前时间${nowHours}`)
     message('10s后自动助力')
     await sleep(1000 * 10)
     autoHelp(competition_id, user_own_bug)
