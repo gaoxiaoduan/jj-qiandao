@@ -14,5 +14,8 @@ module.exports = {
   randomEmoji() {
     const index = Math.floor(Math.random() * emojis.length)
     return emojis[index] || '666'
+  },
+  sleep(delay = 1000) {
+    return new Promise(resolve => setTimeout(resolve, delay))
   }
 }

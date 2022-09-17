@@ -17,7 +17,7 @@ if (!COOKIE) return message('获取不到cookie,请检查设置')
 const { autoGame } = require('./lib/game/autoGame')
 
 const api = require('./lib/api')(COOKIE)
-const { randomEmoji } = require('./lib/utils')
+const { randomEmoji, sleep } = require('./lib/utils')
 
 // 获取可抽奖次数
 async function get_raw_time() {
@@ -193,6 +193,8 @@ async function autoHelp(competition_id, bug_fix_num = 1) {
 
   // -------------------自动助力-------------------
   if (new Date().getDay().toString() === ASSIST_DAY) {
+    message('10s后自动助力')
+    await sleep(1000 * 10)
     autoHelp(competition_id, user_own_bug)
   }
 })()
