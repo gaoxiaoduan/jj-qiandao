@@ -197,7 +197,7 @@ async function autoHelp(competition_id, bug_fix_num = 1) {
     const nowHours = nowDate.getHours()
     if (nowHours !== 10) return message(`助力尚未开始:当前时间${nowHours}`)
     message('10s后自动助力')
-    await sleep(1000 * 10)
+    await sleep(1000 * 15)
     autoHelp(competition_id, user_own_bug)
   }
 })()
