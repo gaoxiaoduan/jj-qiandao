@@ -187,6 +187,7 @@ async function autoHelp(competition_id, bug_fix_num = 1) {
   const bugCount = await collectBug() // 收集bug
   const { competition_id } = await api.getCompetition()
   const { user_own_bug } = await api.bugfix_user({ competition_id })
+  console.log('🐞 目前bug数量::', user_own_bug)
   bugCount === 0
     ? message(`💬 没有收集到bug~,目前bug数量:${user_own_bug || -1}`)
     : message(`🎉 收集到${bugCount}个bug,目前bug数量:${user_own_bug || -1}`)
@@ -196,7 +197,7 @@ async function autoHelp(competition_id, bug_fix_num = 1) {
   if (nowDate.getDay().toString() === ASSIST_DAY) {
     const nowHours = nowDate.getHours()
     if (nowHours !== 10) return message(`助力尚未开始:当前时间${nowHours}`)
-    message('10s后自动助力')
+    message('💬💬💬 15s后自动助力~')
     await sleep(1000 * 15)
     autoHelp(competition_id, user_own_bug)
   }
