@@ -175,7 +175,10 @@ async function autoHelp(competition_id, bug_fix_num = 1) {
   message(dipMsg)
 
   // -------------------评论沸点-------------------
-  commit()
+  if (new Date().getDay() === 5) {
+    // 周五进行评论
+    commit()
+  }
 
   // -------------------游戏收集-------------------
   if (!USERID) return message('获取不到uid,请检查设置')
@@ -187,10 +190,9 @@ async function autoHelp(competition_id, bug_fix_num = 1) {
   const bugCount = await collectBug() // 收集bug
   const { competition_id } = await api.getCompetition()
   const { user_own_bug } = await api.bugfix_user({ competition_id })
-  console.log('🐞 目前bug数量::', user_own_bug)
   bugCount === 0
-    ? message(`💬 没有收集到bug~,目前bug数量:${user_own_bug || -1}`)
-    : message(`🎉 收集到${bugCount}个bug,目前bug数量:${user_own_bug || -1}`)
+    ? message(`💬 没有收集到bug~,目前bug数量:${user_own_bug}`)
+    : message(`🎉 收集到${bugCount}个bug,目前bug数量:${user_own_bug}`)
 
   // -------------------自动助力-------------------
   const nowDate = new Date()
