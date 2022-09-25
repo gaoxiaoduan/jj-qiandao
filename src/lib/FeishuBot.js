@@ -9,7 +9,7 @@ class FeishuBot {
         this.webhook = options.webhook
         this.secret = options.secret
         // 飞书官方文档描述不清楚，这里的 timestamp 应该精确到秒
-        this.timestamp = ~~(Date.now()/1000);
+        this.timestamp = ~~(Date.now() / 1000);
         this.sign = this.signFn(`${this.timestamp}\n${this.secret}`)
     }
 
@@ -40,13 +40,13 @@ class FeishuBot {
                 },
             }).then((res) => {
                 return res.data
-            })
+            }).catch(() => { })
         }
         return p
     }
 
     sendMessage(msg) {
-        if(this.timer){
+        if (this.timer) {
             clearTimeout(this.timer)
             this.timer = null
         }
@@ -61,7 +61,7 @@ class FeishuBot {
                 }
             }).then(() => {
                 this.text = ''
-            })
+            }).catch(() => { })
         }, 1000)
     }
 }

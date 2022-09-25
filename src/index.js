@@ -132,8 +132,7 @@ async function autoHelp(competition_id, bug_fix_num = 1) {
     console.log('助力接口:::', res)
     if (!res) return message('助力失败')
     message(
-      `成功助力,目标名次:${res?.user_rank || -1},目标bug数量:${
-        res?.bug_fix_num || -1
+      `成功助力,目标名次:${res?.user_rank || -1},目标bug数量:${res?.bug_fix_num || -1
       }`
     )
   } catch (error) {
@@ -141,7 +140,7 @@ async function autoHelp(competition_id, bug_fix_num = 1) {
   }
 }
 
-;(async () => {
+; (async () => {
   // 查询今日是否已经签到
   const today_status = await api.get_today_status()
   let freeCount = 3 // 免费签到次数
@@ -164,7 +163,7 @@ async function autoHelp(competition_id, bug_fix_num = 1) {
         message(`签到成功!当前积分: ${sum_point}`)
         // 去抽奖
         ALL_IN === 'true' ? draw_all() : draw()
-      })
+      }).catch(() => { })
     }
   } else {
     // 仅抽奖

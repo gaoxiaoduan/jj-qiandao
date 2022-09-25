@@ -48,13 +48,13 @@ class DingtalkBot {
         },
       }).then((res) => {
         return res.data
-      })
+      }).catch(() => { })
     }
     return p
   }
 
   sendMessage(msg) {
-    if(this.timer){
+    if (this.timer) {
       clearTimeout(this.timer)
       this.timer = null
     }
@@ -68,7 +68,7 @@ class DingtalkBot {
         }
       }).then(() => {
         this.text = ''
-      })
+      }).catch(() => { })
     }, 1000)
   }
 }
