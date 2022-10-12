@@ -36,7 +36,7 @@
 
 #### 如图所示：
 
-![image-20220112100911876](https://coderduan-image.oss-cn-hangzhou.aliyuncs.com/img/202201121009917.png)
+![image-20220112100911876](https://cdn.jsdelivr.net/gh/gaoxiaoduan/picGoImg@main/images/202201121009917.png)
 
 #### 游戏 ID 获取方式:
 
@@ -46,27 +46,23 @@
 
 ### 三、自动收集 bug & 自动评论
 
-#### 自动收集bug
+#### 自动收集 bug
 
 为`Actions secrets`设置`UUID`,即可自动收集每日 bug
 
-![image-20220908175618627](https://coderduan-image.oss-cn-hangzhou.aliyuncs.com/img/202209081756719.png)
-
-
+![image-20220908175618627](https://cdn.jsdelivr.net/gh/gaoxiaoduan/picGoImg@main/images/202209081756719.png)
 
 #### UUID 获取方式
 
-![image-20220424135406092](https://coderduan-image.oss-cn-hangzhou.aliyuncs.com/img/202204241354125.png)
-
-
+![image-20220424135406092](https://cdn.jsdelivr.net/gh/gaoxiaoduan/picGoImg@main/images/202204241354125.png)
 
 #### 自动评论
 
-步骤【点击头像】->【我的主页】->【沸点】，查看`query_list`中沸点的id，填入到`COMMITID`中即可自动评论沸点
+步骤【点击头像】->【我的主页】->【沸点】，查看`query_list`中沸点的 id，填入到`COMMITID`中即可自动评论沸点
 
 如需评论文章，还需设置`COMMITTYPE`为`false`
 
-![image-20220908180312568](https://coderduan-image.oss-cn-hangzhou.aliyuncs.com/img/202209081803626.png)
+![image-20220908180312568](https://cdn.jsdelivr.net/gh/gaoxiaoduan/picGoImg@main/images/202209081803626.png)
 
 ### 四、抽奖时间修改
 
