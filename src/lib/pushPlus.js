@@ -1,11 +1,11 @@
 const axios = require("axios");
 const config = require('./config')
-async function PushPlus({text, html}) {
+async function PushPlus(msg) {
     try {
         return await sendMessage({
             token: config.PUSHPLUS_TOKEN,
             title: "掘金签到日志",
-            content: text || html,
+            content: msg,
             topic: "",
             template: "html",
             channel: "wechat",
