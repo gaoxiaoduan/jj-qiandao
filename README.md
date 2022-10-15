@@ -131,3 +131,10 @@
 1. 在`安全设置`中勾选`签名校验` 复制下 webhook 地址和签名校验内容，在 Github 的 Secrets 中在添加 2 个变量，Name 是`FEISHU_WEBHOOK`，Value 填写 webhook 地址,Name 是`FEISHU_SECRET`，Value 填写的签名校验内容 ![](./statics/imgs/feishu5.png) ![](./statics/imgs/feishu6.png) ![](./statics/imgs/feishu7.png)
 
 </details>
+
+<details>
+ <summary>接入pushplus</summary>
+
+1. 复制pushplus的token，在 Github 的 Secrets 中在添加 1 个变量，Name 是`PUSHPLUS_TOKEN`，Value 填写 pushplus的token
+
+</details>
