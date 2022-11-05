@@ -120,13 +120,13 @@ async function commit() {
 // 自动助力
 async function autoHelp(competition_id, bug_fix_num = 1) {
   try {
-    if (!ASSIST_USER_ID) return message('获取不到assist_user_id,如需开启请设置')
+    // if (!ASSIST_USER_ID) return message('获取不到assist_user_id,如需开启请设置')
     if (!competition_id) return message('获取不到competition_id')
     const params = {
       competition_id, // 比赛ID
       bug_fix_num, // 助力bug数量
-      assist_user_id: ASSIST_USER_ID, // 助力目标ID
-      not_self: 1
+      // assist_user_id: ASSIST_USER_ID, // 助力目标ID
+      not_self: 0
     }
     const res = await api.bugfix_fix(params)
     console.log('助力接口:::', res)
