@@ -19,9 +19,9 @@
   "author": "gaoxiaoduan",
   "license": "MIT",
   "dependencies": {
-    "axios": "^0.21.4",
+    "axios": "^1.17.0",
     "dayjs": "^1.10.6",
     "got": "^11.8.2",
-    "jsonwebtoken": "^8.5.1"
+    "jsonwebtoken": "^9.0.3"
   }
 }
